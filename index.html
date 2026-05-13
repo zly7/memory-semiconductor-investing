@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memory & AI Semiconductor Investing</title>
+  <meta name="description" content="存储、AI 半导体与核心公司 DCF 估值笔记汇总。">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #11182c;
+      --panel-soft: #17213a;
+      --text: #edf2ff;
+      --muted: #aeb9d4;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #6ee7b7;
+      --accent-2: #93c5fd;
+      --warn: #fbbf24;
+      --danger: #f87171;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at top left, rgba(110, 231, 183, 0.16), transparent 34rem),
+        radial-gradient(circle at top right, rgba(147, 197, 253, 0.18), transparent 30rem),
+        var(--bg);
+    }
+
+    a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 76px 0 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(110, 231, 183, 0.08);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 1.04;
+      letter-spacing: -0.06em;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .metric {
+      min-height: 150px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(17, 24, 44, 0.78);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .metric .label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .metric .value {
+      margin: 12px 0 4px;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .metric .note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      margin: 34px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-title p {
+      max-width: 560px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(23, 33, 58, 0.96), rgba(17, 24, 44, 0.96));
+    }
+
+    .card h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 14px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .tag {
+      flex: none;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      background: rgba(147, 197, 253, 0.12);
+      color: var(--accent-2);
+    }
+
+    .valuation {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 28px;
+      font-weight: 850;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .facts {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .facts li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .facts strong {
+      color: var(--text);
+      text-align: right;
+    }
+
+    .takeaway {
+      margin: 18px 0 0;
+      padding: 14px 16px;
+      border-left: 3px solid var(--accent);
+      border-radius: 14px;
+      color: #dffcef;
+      background: rgba(110, 231, 183, 0.08);
+    }
+
+    .takeaway.warn {
+      border-left-color: var(--warn);
+      color: #fff2c7;
+      background: rgba(251, 191, 36, 0.08);
+    }
+
+    .table-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(17, 24, 44, 0.84);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td strong {
+      color: var(--text);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .pill.positive {
+      color: #dffcef;
+      background: rgba(110, 231, 183, 0.12);
+    }
+
+    .pill.negative {
+      color: #ffe2e2;
+      background: rgba(248, 113, 113, 0.12);
+    }
+
+    .pill.neutral {
+      color: #dbeafe;
+      background: rgba(147, 197, 253, 0.12);
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+    }
+
+    .note-box {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(17, 24, 44, 0.74);
+    }
+
+    .note-box h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .note-box ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .note-box li {
+      margin: 8px 0;
+    }
+
+    footer {
+      margin-top: 46px;
+      padding: 34px 0 54px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid,
+      .cards,
+      .notes {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-title p {
+        margin-top: 8px;
+      }
+
+      table {
+        min-width: 760px;
+      }
+
+      .table-card {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="eyebrow">Semiconductor Investing Notes</div>
+    <h1>存储与 AI 半导体投资研究</h1>
+    <p class="lead">
+      这个仓库整理了 NVIDIA、AMD、三星电子、SK 海力士等半导体公司的财务与估值笔记。
+      核心方法是用简化 DCF 对未来 10 年现金流进行折现，并重点观察 AI Data Center、HBM 与存储周期对估值的影响。
+    </p>
+
+    <div class="hero-grid" aria-label="核心估值概览">
+      <article class="metric">
+        <div class="label">NVIDIA</div>
+        <div class="value">约 $4.59T</div>
+        <div class="note">Data Center 高增速 + 60% FCF margin 口径</div>
+      </article>
+      <article class="metric">
+        <div class="label">Samsung</div>
+        <div class="value">约 $1.58T</div>
+        <div class="note">DS 半导体 20% 增长、利润率 45%–50%</div>
+      </article>
+      <article class="metric">
+        <div class="label">SK hynix</div>
+        <div class="value">$1.09T / $2.02T–$2.43T</div>
+        <div class="note">不同折现率与现金流起点下差异很大</div>
+      </article>
+      <article class="metric">
+        <div class="label">AMD</div>
+        <div class="value">$200B–$534B</div>
+        <div class="note">无终值口径下明显低于约 $740B 市值</div>
+      </article>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section>
+      <div class="section-title">
+        <h2>DCF 结论</h2>
+        <p>所有结果都来自仓库中的简化估值笔记，统一强调：不考虑终值、不扣或弱化 capex 的模型会对增长和利润率假设非常敏感。</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3>NVIDIA <span class="tag">AI Data Center</span></h3>
+          <p class="valuation">约 $4.59 万亿美元</p>
+          <p class="subtitle">Data Center 贡献约 $4.50T，Graphics 贡献约 $0.093T。</p>
+          <ul class="facts">
+            <li><span>起始收入</span><strong>Data Center 年化 $249.2B</strong></li>
+            <li><span>核心假设</span><strong>DC FCF margin 60%</strong></li>
+            <li><span>增长路径</span><strong>70% 逐步降至 5%</strong></li>
+            <li><span>每股估值</span><strong>约 $188/股</strong></li>
+          </ul>
+          <p class="takeaway">
+            结论：NVIDIA 估值几乎全部由 Data Center 决定，模型隐含 AI 算力需求和高利润率长期维持。
+          </p>
+          <a href="nv dcf 估值法.md">查看原始笔记</a>
+        </article>
+
+        <article class="card">
+          <h3>AMD <span class="tag">AI Second Source</span></h3>
+          <p class="valuation">约 $200B–$534B</p>
+          <p class="subtitle">中性口径约 $203B，激进口径约 $534B。</p>
+          <ul class="facts">
+            <li><span>Data Center 起点</span><strong>年化 $23.10B</strong></li>
+            <li><span>增长情景</span><strong>30% / 40% / 50%</strong></li>
+            <li><span>终局净利率</span><strong>35% / 40% / 45%</strong></li>
+            <li><span>当前市值对比</span><strong>约 $740B</strong></li>
+          </ul>
+          <p class="takeaway warn">
+            结论：在无终值、无残值的 10 年 DCF 下，AMD 当前市值已经隐含更强的长期增长、终值或生态位期权。
+          </p>
+          <a href="amd 的dcf 估值法.md">查看原始笔记</a>
+        </article>
+
+        <article class="card">
+          <h3>Samsung <span class="tag">Memory + Foundry</span></h3>
+          <p class="valuation">约 $1.58 万亿美元</p>
+          <p class="subtitle">折合约 2,364 万亿韩元，较约 $1.264T 市值高约 25%。</p>
+          <ul class="facts">
+            <li><span>DS 年化收入</span><strong>326.8 万亿韩元</strong></li>
+            <li><span>DS 增长假设</span><strong>10 年 20% CAGR</strong></li>
+            <li><span>DS 利润率</span><strong>50% 线性降至 45%</strong></li>
+            <li><span>其他业务贡献</span><strong>约 $71B，不到 5%</strong></li>
+          </ul>
+          <p class="takeaway">
+            结论：三星的上行空间主要取决于 DS 半导体业务能否长期保持高增长和高利润率。
+          </p>
+          <a href="三星 dcf 估值法-假设.md">查看原始笔记</a>
+        </article>
+
+        <article class="card">
+          <h3>SK hynix <span class="tag">HBM Cycle</span></h3>
+          <p class="valuation">约 $1.09T，或 $2.02T–$2.43T</p>
+          <p class="subtitle">同一公司在不同现金流口径、折现率下估值差异显著。</p>
+          <ul class="facts">
+            <li><span>营收口径模型</span><strong>约 1,620.8 万亿韩元</strong></li>
+            <li><span>对应美元</span><strong>约 $1.09T，上行约 15%</strong></li>
+            <li><span>净利润口径模型</span><strong>约 3,013.8–3,616.5 万亿韩元</strong></li>
+            <li><span>对应美元</span><strong>约 $2.02T–$2.43T</strong></li>
+          </ul>
+          <p class="takeaway warn">
+            结论：海力士估值对 Q1 2026 超高利润率是否可持续极其敏感，安全边际取决于 HBM 周期长度和 capex 强度。
+          </p>
+          <a href="海力士 dcf-估值法.md">查看营收口径笔记</a>
+          <span> · </span>
+          <a href="海力士10 年自由现金流折现.md">查看净利润口径笔记</a>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>横向比较</h2>
+        <p>这张表更适合快速复盘不同公司在模型中的估值位置和主要风险。</p>
+      </div>
+
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>公司</th>
+              <th>DCF 估值结论</th>
+              <th>相对市场价格</th>
+              <th>最关键变量</th>
+              <th>解读</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NVIDIA</strong></td>
+              <td>约 $4.59T</td>
+              <td><span class="pill neutral">需对比最新市值</span></td>
+              <td>Data Center 增长率、60% FCF margin</td>
+              <td>AI 算力叙事最强，估值主要押注高增速不快速衰减。</td>
+            </tr>
+            <tr>
+              <td><strong>AMD</strong></td>
+              <td>$200B–$534B</td>
+              <td><span class="pill negative">低于约 $740B 市值</span></td>
+              <td>AI GPU 份额、Data Center 净利率、终值</td>
+              <td>若不用终值，当前价格已经包含较高期权价值。</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung</strong></td>
+              <td>约 $1.58T</td>
+              <td><span class="pill positive">高于约 $1.264T 市值约 25%</span></td>
+              <td>DS 半导体 20% 增长与 45%+ 利润率</td>
+              <td>估值上行主要来自存储与半导体业务，而非消费电子。</td>
+            </tr>
+            <tr>
+              <td><strong>SK hynix</strong></td>
+              <td>$1.09T 或 $2.02T–$2.43T</td>
+              <td><span class="pill positive">从 +15% 到 +181%</span></td>
+              <td>Q1 高利润率能否持续、折现率、capex</td>
+              <td>最敏感也最周期化，HBM 长周期假设决定估值弹性。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>模型口径</h2>
+        <p>这些笔记不是完整财务模型，而是用于压力测试市场定价和投资假设的简化框架。</p>
+      </div>
+
+      <div class="notes">
+        <article class="note-box">
+          <h3>共同特征</h3>
+          <ul>
+            <li>多数模型只计算未来 10 年现金流，不给永续终值。</li>
+            <li>现金流常用净利润、税后经营利润或 FCF margin 近似。</li>
+            <li>部分模型不扣 capex、营运资本变化和周期下行损失。</li>
+            <li>估值结论适合做情景比较，不适合作为单点目标价。</li>
+          </ul>
+        </article>
+
+        <article class="note-box">
+          <h3>主要风险</h3>
+          <ul>
+            <li>HBM 和 DRAM 仍有明显周期属性。</li>
+            <li>超高净利率可能是周期高点而非常态。</li>
+            <li>AI 资本开支若放缓，Data Center 增长路径会重估。</li>
+            <li>无终值模型会低估成熟公司的剩余价值。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>
+      本页面是仓库研究笔记的可视化入口，仅用于投资研究记录，不构成投资建议。
+      建议结合原始 Markdown 笔记、最新财报、股本和市值数据一起复核。
+    </p>
+  </footer>
+</body>
+</html>
