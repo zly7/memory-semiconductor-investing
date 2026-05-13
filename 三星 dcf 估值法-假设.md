@@ -1,0 +1,68 @@
+按你的假设，**三星简化 DCF 估值约为 2,364 万亿韩元，折合约 1.58 万亿美元**。
+
+我这里用的是三星最新季报 **2026 Q1**：总营收 **133.9 万亿韩元**，DS 半导体业务营收 **81.7 万亿韩元**、营业利润 **53.7 万亿韩元**，官方披露 DS OP margin 约 **66%**，所以你设定的 “0.65 × 0.78 ≈ 50% 税后利润率”基本是在用 DS 经营利润率扣 22% 税。([Samsung Global Newsroom](https://news.samsung.com/global/samsung-electronics-announces-first-quarter-2026-results "Samsung Electronics Announces First Quarter 2026 Results – Samsung Global Newsroom"))
+
+### 1. 起始营收口径
+
+因为三星分部销售额包含内部交易，分部加总会超过合并总收入，官方 PDF 也说明 business unit sales include intersegment sales。([Samsung Images](https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2026_1Q_conference_eng.pdf "Samsung  Electronics")) 所以我主模型用**合并口径避免重复计算**：
+
+|项目|2026 Q1 营收|年化第 1 年营收|
+|---|--:|--:|
+|DS 半导体|81.7 万亿韩元|326.8 万亿韩元|
+|其他业务 = 总营收 - DS|52.2 万亿韩元|208.8 万亿韩元|
+
+汇率按近期约 **1 USD = 1,492 KRW** 换算。([Wise](https://wise.com/us/currency-converter/usd-to-krw-rate/history?utm_source=chatgpt.com "US dollar to South Korean wons Exchange Rate History"))
+
+### 2. DCF 结果
+
+核心假设：
+
+|项目|DS 半导体|其他业务|
+|---|--:|--:|
+|第 1 年营收|326.8 万亿韩元|208.8 万亿韩元|
+|年增长率|20%|3%|
+|利润率|50% 线性降到 45%|7% 不变|
+|折现率|9%|9%|
+|终值|0|0|
+|Capex / 营运资本|不考虑|不考虑|
+
+计算后：
+
+|估值部分|现值，万亿韩元|折合美元|
+|---|--:|--:|
+|DS 半导体 10 年 FCF PV|2,258.9|1.514 万亿美元|
+|其他业务 10 年 FCF PV|105.3|0.071 万亿美元|
+|**合计**|**2,364.2**|**1.585 万亿美元**|
+
+所以这个模型下，**三星价值 ≈ 1.58 万亿美元**。
+
+### 3. 年度现金流大致长这样
+
+|年份|DS营收|DS利润率|DS FCF|其他业务FCF|折现后总PV|
+|--:|--:|--:|--:|--:|--:|
+|1|326.8|50.0%|163.4|14.6|163.3|
+|2|392.2|49.4%|193.7|15.0|175.9|
+|3|470.6|48.9%|230.1|15.5|189.6|
+|4|564.7|48.3%|272.9|16.0|204.7|
+|5|677.7|47.8%|323.3|16.5|221.1|
+|6|813.2|47.2%|384.0|16.9|239.1|
+|7|975.8|46.7%|455.4|17.5|258.7|
+|8|1,171.0|46.1%|540.0|18.0|280.0|
+|9|1,405.2|45.6%|640.1|18.5|303.3|
+|10|1,686.2|45.0%|758.8|19.1|328.6|
+
+单位都是**万亿韩元**。
+
+### 4. 和当前市值粗略比较
+
+CompaniesMarketCap 显示三星 2026 年 5 月市值约 **1.264 万亿美元**。([CompaniesMarketCap](https://companiesmarketcap.com/samsung/marketcap/?utm_source=chatgpt.com "Samsung (005930.KS) - Market capitalization"))
+
+按这个 DCF：
+
+[  
+\frac{1.585}{1.264}-1 \approx 25.4%  
+]
+
+也就是**比当前市值高约 25%**。
+
+但这个结论高度依赖你给的 DS 假设：**DS 年营收连续 10 年 20% 增长 + 税后利润率长期维持 45%–50%**。在这个模型里，估值几乎全由 DS 决定，其他显示、手机、家电、Harman 加起来只贡献约 **710 亿美元**，占总估值不到 **5%**。
