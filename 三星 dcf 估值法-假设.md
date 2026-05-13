@@ -55,14 +55,14 @@
 
 ### 4. 和当前市值粗略比较
 
-CompaniesMarketCap 显示三星 2026 年 5 月市值约 **1.264 万亿美元**。([CompaniesMarketCap](https://companiesmarketcap.com/samsung/marketcap/?utm_source=chatgpt.com "Samsung (005930.KS) - Market capitalization"))
+按当前首页统一口径，三星电子当前股价约 **284,000 韩元/股**，当前市值约 **1,660 万亿韩元**，折合约 **1.11 万亿美元**。
 
 按这个 DCF：
 
 [  
-\frac{1.585}{1.264}-1 \approx 25.4%  
+\frac{2,364.2}{1,660}-1 \approx 42.4%  
 ]
 
-也就是**比当前市值高约 25%**。
+也就是**比当前市值高约 42%**。
 
 但这个结论高度依赖你给的 DS 假设：**DS 年营收连续 10 年 20% 增长 + 税后利润率长期维持 45%–50%**。在这个模型里，估值几乎全由 DS 决定，其他显示、手机、家电、Harman 加起来只贡献约 **710 亿美元**，占总估值不到 **5%**。
