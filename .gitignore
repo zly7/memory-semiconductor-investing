@@ -9,6 +9,11 @@ passport-biodata-page-zhangliyu.pdf
 # Nested independent repos (managed separately)
 8hour-run-cc-template/
 bili-douyin-migration/
+finance-idea/other-finance-package/*/
+finance-idea/quant_by_leancli/
+
+# Playwright MCP transient logs/snapshots
+.playwright-mcp/
 
 # Python
 __pycache__/

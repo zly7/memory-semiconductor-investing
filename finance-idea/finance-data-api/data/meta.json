@@ -1,0 +1,398 @@
+{
+  "prices/SPY": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:25"
+  },
+  "prices/QQQ": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:26"
+  },
+  "prices/VIX": {
+    "rows": 2867,
+    "refreshed_at": "2026-05-27T18:39:31"
+  },
+  "prices/IWM": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:27"
+  },
+  "prices/DIA": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:28"
+  },
+  "prices/EEM": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:29"
+  },
+  "prices/FXI": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:30"
+  },
+  "prices/ASHR": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:31"
+  },
+  "prices/TNX": {
+    "rows": 2864,
+    "refreshed_at": "2026-05-27T18:39:32"
+  },
+  "prices/FVX": {
+    "rows": 2864,
+    "refreshed_at": "2026-05-27T18:39:33"
+  },
+  "prices/IRX": {
+    "rows": 2864,
+    "refreshed_at": "2026-05-27T18:39:34"
+  },
+  "prices/TYX": {
+    "rows": 2864,
+    "refreshed_at": "2026-05-27T18:39:35"
+  },
+  "prices/DXY": {
+    "rows": 2867,
+    "refreshed_at": "2026-05-27T18:39:36"
+  },
+  "prices/GLD": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:36"
+  },
+  "prices/SLV": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:37"
+  },
+  "prices/USO": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:38"
+  },
+  "prices/HG": {
+    "rows": 2866,
+    "refreshed_at": "2026-05-27T18:39:39"
+  },
+  "prices/CL": {
+    "rows": 2866,
+    "refreshed_at": "2026-05-27T18:39:39"
+  },
+  "prices/GC": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:40"
+  },
+  "prices/BTC": {
+    "rows": 4165,
+    "refreshed_at": "2026-05-27T18:39:41"
+  },
+  "prices/TLT": {
+    "rows": 2865,
+    "refreshed_at": "2026-05-27T18:39:42"
+  },
+  "nav/ETF510300": {
+    "rows": 2774,
+    "refreshed_at": "2026-05-27T18:50:35"
+  },
+  "nav/ETF510500": {
+    "rows": 2774,
+    "refreshed_at": "2026-05-27T18:50:57"
+  },
+  "nav/ETF159915": {
+    "rows": 2774,
+    "refreshed_at": "2026-05-27T18:51:20"
+  },
+  "nav/ETF588000": {
+    "rows": 1350,
+    "refreshed_at": "2026-05-27T18:51:31"
+  },
+  "nav/ETF510900": {
+    "rows": 2744,
+    "refreshed_at": "2026-05-27T18:51:54"
+  },
+  "nav/ETF159740": {
+    "rows": 1217,
+    "refreshed_at": "2026-05-27T18:52:04"
+  },
+  "nav/ETF518880": {
+    "rows": 2774,
+    "refreshed_at": "2026-05-27T18:52:27"
+  },
+  "nav/QDII513100": {
+    "rows": 2742,
+    "refreshed_at": "2026-05-27T18:52:50"
+  },
+  "nav/QDII513500": {
+    "rows": 2719,
+    "refreshed_at": "2026-05-27T18:53:14"
+  },
+  "prices/QDII513300": {
+    "rows": 1346,
+    "refreshed_at": "2026-05-27T18:53:14"
+  },
+  "nav/QDII513300": {
+    "rows": 1352,
+    "refreshed_at": "2026-05-27T18:53:25"
+  },
+  "nav/QDII159941": {
+    "rows": 2634,
+    "refreshed_at": "2026-05-27T18:53:46"
+  },
+  "nav/QDII513880": {
+    "rows": 1686,
+    "refreshed_at": "2026-05-27T18:54:00"
+  },
+  "nav/QDII513030": {
+    "rows": 2774,
+    "refreshed_at": "2026-05-27T18:54:23"
+  },
+  "nav/QDII164906": {
+    "rows": 2250,
+    "refreshed_at": "2026-05-27T18:54:41"
+  },
+  "macro/NORTH_FLOW": {
+    "rows": 2676,
+    "refreshed_at": "2026-05-27T18:47:30"
+  },
+  "prices/SHCOMP": {
+    "rows": 8648,
+    "refreshed_at": "2026-05-27T18:50:11"
+  },
+  "prices/CSI300": {
+    "rows": 5915,
+    "refreshed_at": "2026-05-27T18:50:11"
+  },
+  "prices/CSI500": {
+    "rows": 5194,
+    "refreshed_at": "2026-05-27T18:50:12"
+  },
+  "prices/CHINEXT": {
+    "rows": 3880,
+    "refreshed_at": "2026-05-27T18:50:12"
+  },
+  "prices/STAR50": {
+    "rows": 1548,
+    "refreshed_at": "2026-05-27T18:50:12"
+  },
+  "prices/ETF510300": {
+    "rows": 3399,
+    "refreshed_at": "2026-05-27T18:50:12"
+  },
+  "prices/ETF510500": {
+    "rows": 3202,
+    "refreshed_at": "2026-05-27T18:50:35"
+  },
+  "prices/ETF159915": {
+    "rows": 3507,
+    "refreshed_at": "2026-05-27T18:50:58"
+  },
+  "prices/ETF588000": {
+    "rows": 1338,
+    "refreshed_at": "2026-05-27T18:51:20"
+  },
+  "prices/ETF510900": {
+    "rows": 3299,
+    "refreshed_at": "2026-05-27T18:51:31"
+  },
+  "prices/ETF159740": {
+    "rows": 1210,
+    "refreshed_at": "2026-05-27T18:51:54"
+  },
+  "prices/ETF518880": {
+    "rows": 3116,
+    "refreshed_at": "2026-05-27T18:52:04"
+  },
+  "prices/QDII513100": {
+    "rows": 3113,
+    "refreshed_at": "2026-05-27T18:52:27"
+  },
+  "prices/QDII513500": {
+    "rows": 3001,
+    "refreshed_at": "2026-05-27T18:52:50"
+  },
+  "prices/QDII159941": {
+    "rows": 2639,
+    "refreshed_at": "2026-05-27T18:53:25"
+  },
+  "prices/QDII513880": {
+    "rows": 1677,
+    "refreshed_at": "2026-05-27T18:53:46"
+  },
+  "prices/QDII513030": {
+    "rows": 2843,
+    "refreshed_at": "2026-05-27T18:54:00"
+  },
+  "prices/QDII164906": {
+    "rows": 2256,
+    "refreshed_at": "2026-05-27T18:54:23"
+  },
+  "prices/HSI": {
+    "rows": 3139,
+    "refreshed_at": "2026-05-27T18:54:42"
+  },
+  "prices/HSCEI": {
+    "rows": 3139,
+    "refreshed_at": "2026-05-27T18:54:42"
+  },
+  "prices/HSTECH": {
+    "rows": 1416,
+    "refreshed_at": "2026-05-27T18:54:42"
+  },
+  "macro/T10Y3M": {
+    "rows": 9105,
+    "refreshed_at": "2026-05-27T22:58:07"
+  },
+  "macro/T10Y2Y": {
+    "rows": 9105,
+    "refreshed_at": "2026-05-27T22:58:09"
+  },
+  "macro/BAMLH0A0HYM2": {
+    "rows": 785,
+    "refreshed_at": "2026-05-27T22:58:09"
+  },
+  "macro/NFCI": {
+    "rows": 1898,
+    "refreshed_at": "2026-05-27T22:58:10"
+  },
+  "macro/CFNAI": {
+    "rows": 436,
+    "refreshed_at": "2026-05-27T22:58:11"
+  },
+  "macro/DGS3MO": {
+    "rows": 9104,
+    "refreshed_at": "2026-05-27T22:58:13"
+  },
+  "macro/DGS10": {
+    "rows": 9104,
+    "refreshed_at": "2026-05-27T22:58:16"
+  },
+  "macro/DGS2": {
+    "rows": 9104,
+    "refreshed_at": "2026-05-27T22:58:21"
+  },
+  "macro/DTWEXBGS": {
+    "rows": 5112,
+    "refreshed_at": "2026-05-27T22:58:25"
+  },
+  "macro/DEXCHUS": {
+    "rows": 9072,
+    "refreshed_at": "2026-05-27T22:58:28"
+  },
+  "macro/GDPC1": {
+    "rows": 145,
+    "refreshed_at": "2026-05-27T22:58:29"
+  },
+  "macro/UNRATE": {
+    "rows": 435,
+    "refreshed_at": "2026-05-27T22:58:30"
+  },
+  "macro/CPILFESL": {
+    "rows": 435,
+    "refreshed_at": "2026-05-27T22:58:31"
+  },
+  "prices/VEU": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:37"
+  },
+  "prices/EFA": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:38"
+  },
+  "prices/IEF": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:39"
+  },
+  "prices/VNQ": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:40"
+  },
+  "prices/DBC": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:41"
+  },
+  "prices/BIL": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:42"
+  },
+  "prices/BND": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:43"
+  },
+  "prices/AGG": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:44"
+  },
+  "prices/SHY": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:45"
+  },
+  "prices/USMV": {
+    "rows": 3670,
+    "refreshed_at": "2026-05-27T22:58:46"
+  },
+  "prices/QUAL": {
+    "rows": 3234,
+    "refreshed_at": "2026-05-27T22:58:46"
+  },
+  "prices/MTUM": {
+    "rows": 3297,
+    "refreshed_at": "2026-05-27T22:58:47"
+  },
+  "prices/VLUE": {
+    "rows": 3297,
+    "refreshed_at": "2026-05-27T22:58:48"
+  },
+  "prices/SPLV": {
+    "rows": 3787,
+    "refreshed_at": "2026-05-27T22:58:49"
+  },
+  "prices/VBR": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:50"
+  },
+  "prices/IJS": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:50"
+  },
+  "prices/GLDM": {
+    "rows": 1990,
+    "refreshed_at": "2026-05-27T22:58:51"
+  },
+  "prices/XLK": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:52"
+  },
+  "prices/XLF": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:53"
+  },
+  "prices/XLE": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:54"
+  },
+  "prices/XLY": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:54"
+  },
+  "prices/XLP": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:55"
+  },
+  "prices/XLV": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:56"
+  },
+  "prices/XLI": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:57"
+  },
+  "prices/XLU": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:58"
+  },
+  "prices/XLB": {
+    "rows": 4124,
+    "refreshed_at": "2026-05-27T22:58:59"
+  },
+  "prices/XLRE": {
+    "rows": 2673,
+    "refreshed_at": "2026-05-27T22:59:00"
+  },
+  "prices/XLC": {
+    "rows": 1995,
+    "refreshed_at": "2026-05-27T22:59:00"
+  }
+}

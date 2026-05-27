@@ -1,5 +1,6 @@
 {
   "permissions": {
+    "defaultMode": "bypassPermissions",
     "allow": [
       "Bash(lark-cli wiki *)",
       "Bash(lark-cli docs *)",

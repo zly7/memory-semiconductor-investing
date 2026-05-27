@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CN red-up / green-down trader palette */
+:root {
+  --bg-0: #0e1015;
+  --bg-1: #15181f;
+  --bg-2: #1d212b;
+  --bg-3: #262b36;
+  --border: #262b36;
+  --text-1: #e6e8ec;
+  --text-2: #9aa0aa;
+  --text-3: #6c7280;
+  --accent: #2f72ff;
+  --up: #f04848;       /* 红涨 */
+  --down: #1aaf60;     /* 绿跌 */
+  --warn: #f5a623;
+  --neutral: #6c7280;
+  color-scheme: dark;
+}
+
+html.light {
+  --bg-0: #f7f8fa;
+  --bg-1: #ffffff;
+  --bg-2: #f0f2f6;
+  --bg-3: #e6e9ef;
+  --border: #e1e4eb;
+  --text-1: #15181f;
+  --text-2: #4f5562;
+  --text-3: #8a90a0;
+  --accent: #2f72ff;
+  --up: #d8242c;
+  --down: #15b56b;
+  color-scheme: light;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-0);
+  color: var(--text-1);
+  font-family: 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', Arial, sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-0); }
+::-webkit-scrollbar-thumb { background: var(--bg-3); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+
+/* Reusable utility classes */
+.card {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.num-mono {
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.text-up   { color: var(--up); }
+.text-down { color: var(--down); }
+.text-warn { color: var(--warn); }
+.text-nu   { color: var(--neutral); }
+
+.bg-up-soft   { background: color-mix(in srgb, var(--up) 14%, transparent); }
+.bg-down-soft { background: color-mix(in srgb, var(--down) 14%, transparent); }
+.bg-warn-soft { background: color-mix(in srgb, var(--warn) 16%, transparent); }
+.bg-nu-soft   { background: color-mix(in srgb, var(--neutral) 18%, transparent); }
