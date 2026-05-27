@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Personal PDFs
+10067-Zhang_Liyu-jp_billingual.pdf
+passport-biodata-page-zhangliyu.pdf
+
+# Nested independent repos (managed separately)
+8hour-run-cc-template/
+bili-douyin-migration/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
