@@ -46,9 +46,11 @@ class Storage:
         if not p.exists():
             return None
         df = pd.read_parquet(p)
-        if "date" in df.columns:
-            df["date"] = pd.to_datetime(df["date"])
-            df = df.set_index("date")
+        for date_col in ("date", "observation_date"):
+            if date_col in df.columns:
+                df[date_col] = pd.to_datetime(df[date_col])
+                df = df.set_index(date_col)
+                break
         df.index = pd.to_datetime(df.index)
         return df.sort_index()
 

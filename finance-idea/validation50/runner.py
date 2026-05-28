@@ -249,7 +249,7 @@ def write_report(result: Result, path: pathlib.Path) -> None:
         md.append("")
     md.append("---")
     md.append(f"_notes_: {result.notes}")
-    path.write_text("\n".join(md))
+    path.write_text("\n".join(md), encoding="utf-8")
 
 
 # ---------------------------------------------------------------------------
@@ -305,8 +305,10 @@ def run_all(ids: Optional[list[str]] = None) -> list[dict]:
 
 def write_scorecard(rows: list[dict]) -> None:
     df = pd.DataFrame(rows)
-    df.to_json(OUT / "scorecard.json", orient="records", indent=2,
-               force_ascii=False)
+    (OUT / "scorecard.json").write_text(
+        df.to_json(orient="records", indent=2, force_ascii=False),
+        encoding="utf-8",
+    )
     by_verdict = df.groupby("our_verdict").size() if "our_verdict" in df else None
     md = ["# Scorecard", ""]
     if by_verdict is not None:
@@ -316,10 +318,50 @@ def write_scorecard(rows: list[dict]) -> None:
         for v, c in by_verdict.items():
             md.append(f"| {v} | {c} |")
         md.append("")
-    md.append("## Per-strategy")
+
+    # --- Biggest surprises (vs primary benchmark) ---
+    def _bench_sharpe(r):
+        bs = r.get("benchmarks") or {}
+        for k in ("spy_buy_hold", "equal_weight", "csi300_buy_hold",
+                  "eq_50_50", "eq_spy_eem", "always_dca"):
+            if k in bs:
+                return bs[k].get("sharpe") or 0.0
+        # fallback: first benchmark
+        return next(iter(bs.values()), {}).get("sharpe") or 0.0
+
+    scored = []
+    for r in rows:
+        if r.get("status") != "ok":
+            continue
+        ss = (r.get("stats") or {}).get("sharpe") or 0.0
+        bs = _bench_sharpe(r)
+        scored.append((r, ss - bs))
+    scored.sort(key=lambda t: t[1], reverse=True)
+    pos_surprises = [t for t in scored if t[1] > 0.0][:5]
+    neg_surprises = sorted(scored, key=lambda t: t[1])[:5]
+
+    md.append("## Top 5 positive surprises (highest Sharpe edge over benchmark)")
+    md.append("| id | family | lit | ours | sharpe gap | strat CAGR |")
+    md.append("|---|---|---|---|---|---|")
+    for r, gap in pos_surprises:
+        cagr = (r.get("stats") or {}).get("cagr") or 0.0
+        md.append(f"| `{r['id']}` | {r['family']} | {r['lit_verdict']} | **{r['our_verdict']}** "
+                  f"| +{gap:.2f} | {cagr:.2%} |")
+    md.append("")
+    md.append("## Top 5 negative surprises (worst Sharpe gap vs benchmark)")
+    md.append("| id | family | lit | ours | sharpe gap | strat CAGR |")
+    md.append("|---|---|---|---|---|---|")
+    for r, gap in neg_surprises:
+        cagr = (r.get("stats") or {}).get("cagr") or 0.0
+        md.append(f"| `{r['id']}` | {r['family']} | {r['lit_verdict']} | **{r['our_verdict']}** "
+                  f"| {gap:+.2f} | {cagr:.2%} |")
+    md.append("")
+
+    md.append("## Per-strategy (sorted by family)")
     md.append("| id | family | name_cn | lit | ours | total | sharpe | maxdd | why |")
     md.append("|---|---|---|---|---|---|---|---|---|")
-    for r in rows:
+    rows_sorted = sorted(rows, key=lambda r: (r.get("family") or "", r.get("id") or ""))
+    for r in rows_sorted:
         if r.get("status") != "ok":
             md.append(f"| {r['id']} | err | — | — | err | — | — | — | {r.get('error','')} |")
             continue
@@ -332,7 +374,7 @@ def write_scorecard(rows: list[dict]) -> None:
             f"{(st.get('maxdd') or 0):.2%} | "
             f"{r['verdict_why'][:100]} |"
         )
-    (OUT / "scorecard.md").write_text("\n".join(md))
+    (OUT / "scorecard.md").write_text("\n".join(md), encoding="utf-8")
 
 
 def main():
@@ -350,4 +392,9 @@ def main():
 
 
 if __name__ == "__main__":
+    # When invoked as `python runner.py`, this module is `__main__`. Strategies
+    # do `from runner import ...`, which would otherwise load a SECOND copy of
+    # this file and register on a different REGISTRY. Alias both names to the
+    # same module so the registry is shared.
+    sys.modules["runner"] = sys.modules["__main__"]
     main()

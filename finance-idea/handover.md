@@ -22,10 +22,10 @@
 | 数据层 (`finance-data-api/`)        | ✅ 完成 | 99 个 series 缓存，最近 refresh 2026-05-27 |
 | 后端 (`backend/`)                    | ✅ 完成 | FastAPI，10 个 idea 的 signals 接口跑通 |
 | 前端 (`frontend/`)                   | ✅ 完成 | Vue 3 + Vite + ECharts，dashboard + idea detail 两个页面都跑通 |
-| 50 策略验证 (`validation50/`)       | 🚧 **进行中** | 框架 + feature list 完成，50 个策略**未实现** |
+| 50 策略验证 (`validation50/`)       | ✅ 完成 | 50 个策略全部实现 + 跑通，45 有数据 / 5 缺数据 |
 | Deep-research 输入 (`deepresearch-result/`) | ✅ 已归档 | 4 份调研报告，76 个候选策略已抽取 |
 
-**🚧 in flight 的活**: validation50 已有 [FEATURE_LIST.md](validation50/FEATURE_LIST.md) 的 50 行清单 + 数据采集脚本 + 跑批 runner，但 `validation50/strategies/` 是空的——50 个 `compute()` 函数还没写。
+**📊 validation50 已交付**: 50 个 `compute()` 全部落地在 [validation50/strategies/](validation50/strategies/)，runner 输出 [outputs/scorecard.md](validation50/outputs/scorecard.md)（含 verdict tally + top-5 surprises 两个汇总块）+ [outputs/narrative.md](validation50/outputs/narrative.md)（约 100 行 surprise 分析）。45 个有数据可跑（13 confirmed / 11 decayed / 3 surprise+ / 2 surprise- / 16 null），5 个因数据缺失被显式 skip（AH 溢价、AAII、CBOE PCR、Shiller CAPE、FOMC schedule）。详见下文 §8。
 
 ---
 
@@ -132,34 +132,47 @@ python finance-data-api/refresh.py    # 拉新数据
 
 ---
 
-## 8. 进行中的活: validation50
-
-这是接手时**最需要继续**的工作。
+## 8. validation50（已完成，可重复跑）
 
 **目标**: 把 4 份 deep research 里提到的 50 个策略**统一框架**回测一遍，给出 "robust / decayed / surprise+ / surprise-" 的分类结论。
 
-### 已经完成
-- [validation50/FEATURE_LIST.md](validation50/FEATURE_LIST.md) — 50 行表格，分 7 类（trend / mean reversion / sentiment / macro / cross-asset / seasonal / allocation），每行带 `id`、`rule`、`data_needs`、`lit_verdict`、`status`、`our_verdict` 列
-- [validation50/data_acq.py](validation50/data_acq.py) — FRED + 18 ETF 数据采集，**已跑过**，数据都在缓存里
-- [validation50/runner.py](validation50/runner.py) — 跑批框架，约定每个策略导出 `compute() -> Result`，runner 负责画 4 panel PNG + 写 markdown + 汇总成 scorecard
+### 已完成
 
-### 还没做
-- `validation50/strategies/` **空目录**。需要给 50 个 id 每个写一个 `.py`，每个文件大概 30–50 行，结构看 [backend/app/signals/qdii_premium.py](backend/app/signals/qdii_premium.py) 类似但更简单（只要回测，不要 narrative）
-- `validation50/strategies/_template.py` 还没写，建议接手时先写一个模板
-- `outputs/scorecard.md` 最终交付物 — 等 50 个 strategy 跑完之后聚合
+- 50 个 `compute()` 函数已落地在 [validation50/strategies/](validation50/strategies/)，每个 30–60 行，统一 schema（返回 `Result`，runner 自动出 4 panel PNG + per-strategy markdown + 加入 scorecard）
+- [validation50/strategies/_helpers.py](validation50/strategies/_helpers.py) 提供 sma / rsi / rolling z / 持仓→收益变换 / bucket forward-return 表 / verdict 分类器等公共件
+- [validation50/strategies/_template.py](validation50/strategies/_template.py) 文档型模板，新增策略时拷贝即可
+- 一次跑通 `python validation50/runner.py` 产出：
+  - [outputs/scorecard.md](validation50/outputs/scorecard.md) — verdict tally + top-5 positive/negative surprises + per-strategy 表
+  - [outputs/scorecard.json](validation50/outputs/scorecard.json) — 结构化数据，供下游消费
+  - [outputs/narrative.md](validation50/outputs/narrative.md) — 100 行 surprise 分析
+  - `outputs/<id>/chart.png` + `outputs/<id>/report.md` — 每个策略的细节
+- [validation50/_apply_verdicts.py](validation50/_apply_verdicts.py) — 把 scorecard.json 的 `our_verdict` 回填到 [FEATURE_LIST.md](validation50/FEATURE_LIST.md) 的 `our_verdict`/`status` 列。**每次跑完 runner 之后再跑一次这个，FEATURE_LIST 才会同步。**
 
-### 推荐接手顺序
-1. 先写 `validation50/strategies/_template.py` 一个模板
-2. 实现头 5 个最容易的（`spy_sma200_timing`、`vix_above_30_buy_spy`、`vix_above_40_buy_spy`、`pf_60_40`、`sell_in_may`）验证 runner 框架是否合理
-3. 调整 runner（如有问题），再写剩下 45 个
-4. 跑完 `python validation50/runner.py`，看 `outputs/scorecard.md`
-5. 写一段「surprise narrative」总结哪些 idea 出乎意料、为什么
+### 当前 verdict 分布
 
-### 数据约束（哪些行还跑不通）
-- **AAII bearish %** — 没自动 fetch，需要从 aaii.com 手动下 CSV 丢到 `validation50/data_drops/aaii_sentiment.csv`
-- **CBOE Put/Call** — 同上
-- **Shiller CAPE** — `data_acq.py` 里有 scrape 代码但不一定每次都成功
-- **AH 溢价指数** — akshare 端点失效，已知问题
+| our_verdict | count | 含义 |
+|---|---|---|
+| confirmed | 13 | 与文献预期一致 |
+| decayed   | 11 | 文献声称有效但本期不显著 / 输给基准 |
+| null      | 16 | 与基准持平（Sharpe 差 < 0.2）|
+| surprise+ |  3 | 文献低估，实测明显跑赢 |
+| surprise- |  2 | 文献高估，实测明显跑输 |
+| skipped   |  5 | 缺数据 |
+
+最大 surprise+: `csi300_sma250_timing`（CN 趋势过滤强于美股）、`northbound_flow`（20 日累计跟随实测胜率显著）、`cn_spring_festival`（春节窗口 Sharpe 0.59 vs CSI300 0.35）。
+最大 surprise-: `sell_in_may`（在 2015–2026 区间持续跑输 SPY 持有）、`santa_rally`（年化 0%，窗口太窄）。
+完整解读在 [narrative.md](validation50/outputs/narrative.md)。
+
+### 还能继续做的事（可选）
+
+- **补 5 个跳过的数据源**，对应 strategy 文件已写好兜底逻辑，数据落地后自动有结果：
+  - `aaii_bearish_60` — 把 aaii.com 周度 CSV 丢到 `validation50/data_drops/aaii_sentiment.csv`，再跑 `python validation50/data_acq.py --only aaii`
+  - `put_call_extreme` — `python validation50/data_acq.py --only pcr`（CBOE 公开 CSV，偶尔失败）
+  - `cape_top_decile` — `python validation50/data_acq.py --only cape`（multpl.com 抓 HTML）
+  - `ah_premium_reversion` — akshare 端点失效，需要新数据源
+  - `prefomc_drift` — 需要 FOMC schedule 手动维护
+- 把 "对齐到公共起始日" 加到 runner，让跨家族 CAGR 可比（当前各 strategy 起算日不同）
+- `_helpers.classify_verdict` 的阈值（±0.2 Sharpe）可调；当前 16 个 null 里有不少 monotonic ρ > 0 的，说明信号方向是对的但规则没榨出来，可以换更细的规则再跑一遍
 
 ---
 
