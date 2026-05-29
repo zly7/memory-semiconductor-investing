@@ -19,8 +19,8 @@ finance-idea/quant_by_leancli/
 __pycache__/
 *.py[cod]
 *$py.class
-.venv/
-venv/
+.venv*/
+venv*/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
